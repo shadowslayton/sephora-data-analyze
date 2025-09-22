@@ -9,6 +9,12 @@
 
 ## 使用方法
 
+### 📋 **系統需求**
+
+- **Python 版本**: 需要 Python 3.10 或以上版本（建議使用 Python 3.11+）
+- **作業系統**: Windows 10/11, macOS 10.15+, Ubuntu 18.04+
+- **記憶體**: 建議 8GB 以上（處理大型資料集時）
+
 ### 1. 虛擬環境設定
 
 ⚠️ **本專案必須在 `.venv` 虛擬環境下執行**
@@ -18,6 +24,9 @@
 #### Windows 環境
 
 ```powershell
+# 檢查 Python 版本（需要 3.10+）
+python --version
+
 # 建立虛擬環境
 python -m venv .venv
 
@@ -31,6 +40,9 @@ pip install -r requirements.txt
 #### macOS/Linux 環境
 
 ```bash
+# 檢查 Python 版本（需要 3.10+）
+python3 --version
+
 # 建立虛擬環境
 python3 -m venv .venv
 
@@ -144,7 +156,7 @@ python3 unit_tests/run_all_tests.py
 
 ### 環境設定
 
-1. **Python 版本**: 建議使用 Python 3.8 或以上版本
+1. **Python 版本**: 需要 Python 3.10 或以上版本（目前專案使用 Python 3.13.3）
 2. **虛擬環境**: 必須在 `.venv` 虛擬環境下執行，避免套件衝突
 3. **相依套件**: 確保所有 requirements.txt 中的套件都已正確安裝
 4. **TARGET_COLUMN**: 必填欄位，指定預測目標，需要包含二元分類值（0/1 或 True/False）
@@ -184,7 +196,7 @@ sephora-data-analyze/
 
 - **虛擬環境未啟動**: 確認終端機顯示 `(.venv)` 前綴
 - **套件缺失**: 執行 `pip install -r requirements.txt` 安裝所有相依套件
-- **Python 版本**: 確保使用 Python 3.8 或以上版本
+- **Python 版本**: 確保使用 Python 3.10 或以上版本（建議 3.11+）
 - **權限問題**: 確認對專案資料夾有讀寫權限
 
 ### 應用程式問題
