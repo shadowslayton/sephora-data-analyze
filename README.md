@@ -4,11 +4,16 @@
 
 - `traning_app.py` - GUI 圖形化介面應用程式
 - `ai_utils/model_traning.py` - 核心模型訓練程式碼
-- `README_APP.md` - 本說明檔案
+- `app_utils/` - GUI 相關模組與公用程式
+- `unit_tests/` - 單元測試資料夾
 
 ## 使用方法
 
-### 1. 建立虛擬環境
+### 1. 虛擬環境設定
+
+⚠️ **本專案必須在 `.venv` 虛擬環境下執行**
+
+如果虛擬環境不存在，請先建立：
 
 #### Windows 環境
 
@@ -41,6 +46,7 @@ pip install -r requirements.txt
 #### Windows
 
 ```powershell
+# 確認虛擬環境已啟動（終端機應顯示 (.venv) 前綴）
 .\.venv\Scripts\Activate.ps1
 python traning_app.py
 ```
@@ -48,6 +54,7 @@ python traning_app.py
 #### macOS/Linux
 
 ```bash
+# 確認虛擬環境已啟動（終端機應顯示 (.venv) 前綴）
 source .venv/bin/activate
 python3 traning_app.py
 ```
@@ -57,6 +64,7 @@ python3 traning_app.py
 #### Windows
 
 ```powershell
+# 確認虛擬環境已啟動
 .\.venv\Scripts\Activate.ps1
 python unit_tests\run_all_tests.py
 ```
@@ -64,8 +72,18 @@ python unit_tests\run_all_tests.py
 #### macOS/Linux
 
 ```bash
+# 確認虛擬環境已啟動
 source .venv/bin/activate
 python3 unit_tests/run_all_tests.py
+```
+
+**單一測試執行**：
+
+```powershell
+# Windows - 執行特定測試
+.\.venv\Scripts\python.exe unit_tests\test_exclude_columns.py
+.\.venv\Scripts\python.exe unit_tests\test_target_exclude_validation.py
+.\.venv\Scripts\python.exe unit_tests\test_gui_validation.py
 ```
 
 ### 4. 設定參數
@@ -138,12 +156,27 @@ python3 unit_tests/run_all_tests.py
 ```
 sephora-data-analyze/
 ├── traning_app.py              # 主程式
-├── app_utils/                  # GUI 模組
+├── app_utils/                  # GUI 相關模組
+│   ├── __init__.py
+│   ├── app_constants.py        # 應用程式常數
+│   ├── config_manager.py       # 配置管理器
+│   ├── gui_builder.py          # GUI 建構器
+│   ├── parameter_validator.py  # 參數驗證器
+│   └── tooltip.py              # 工具提示
 ├── ai_utils/                   # AI 訓練模組
+│   └── model_traning.py        # 模型訓練核心
+├── unit_tests/                 # 單元測試
+│   ├── README.md               # 測試說明文件
+│   ├── run_all_tests.py        # 測試執行器
+│   └── test_*.py               # 各項測試檔案
 ├── requirements.txt            # Python 相依套件清單
+├── optimized_parms.config      # 最佳化參數配置
 ├── .venv/                      # 虛擬環境（需要建立）
 ├── traning_data/               # 訓練資料目錄
-└── output_models/              # 模型輸出目錄
+│   └── train_data(top20).csv   # 範例訓練資料
+├── output_models/              # 模型輸出目錄
+│   └── model_final.bin         # 已訓練的模型檔案
+└── build/                      # 建構輸出目錄
 ```
 
 ## 錯誤排除
@@ -171,18 +204,30 @@ sephora-data-analyze/
 
 ### 常見解決方案
 
-```bash
-# 重新安裝相依套件
+```powershell
+# Windows - 重新安裝相依套件
 pip uninstall -r requirements.txt -y
 pip install -r requirements.txt
 
-# 清理 Python 快取
+# Windows - 清理 Python 快取
+Get-ChildItem -Path . -Recurse -Name "__pycache__" | Remove-Item -Recurse -Force
+Get-ChildItem -Path . -Recurse -Name "*.pyc" | Remove-Item -Force
+
+# 重新啟動虛擬環境
+deactivate
+.\.venv\Scripts\Activate.ps1
+```
+
+```bash
+# macOS/Linux - 重新安裝相依套件
+pip uninstall -r requirements.txt -y
+pip install -r requirements.txt
+
+# macOS/Linux - 清理 Python 快取
 find . -type d -name "__pycache__" -delete
 find . -name "*.pyc" -delete
 
 # 重新啟動虛擬環境
 deactivate
-source .venv/bin/activate  # macOS/Linux
-# 或
-.\.venv\Scripts\Activate.ps1  # Windows
+source .venv/bin/activate
 ```
