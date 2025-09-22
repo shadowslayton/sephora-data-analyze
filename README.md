@@ -174,9 +174,8 @@ sephora-data-analyze/
 ├── .venv/                      # 虛擬環境（需要建立）
 ├── traning_data/               # 訓練資料目錄
 │   └── train_data(top20).csv   # 範例訓練資料
-├── output_models/              # 模型輸出目錄
-│   └── model_final.bin         # 已訓練的模型檔案
-└── build/                      # 建構輸出目錄
+└── output_models/              # 模型輸出目錄
+    └── model_final.bin         # 已訓練的模型檔案
 ```
 
 ## 錯誤排除
